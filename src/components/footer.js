@@ -1,4 +1,5 @@
 import React from "react"
+import SmallLogoImg from "../images/small-logo.svg"
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
       <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
           <div class="space-y-8 xl:col-span-1">
-            <img class="h-10" src="https://tailwindui.com/img/logos/workflow-mark-gray-300.svg" alt="Company name" />
+            <img class="h-10" src={SmallLogoImg} alt="Company name" />
             <p class="text-gray-500 text-base">
               Making the world a better place through constructing elegant hierarchies.
             </p>

@@ -3,29 +3,12 @@ import Layout from "../components/layout"
 
 const AboutPage = () => (
   <Layout>
-    {/* <!--
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-      require('@tailwindcss/aspect-ratio'),
-    ]
-  }
-  ```
---> */}
     <div class="bg-white overflow-hidden">
       <div class="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div class="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen"></div>
         <div class="mx-auto text-base max-w-prose lg:max-w-none">
-          <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Case Study</h2>
-          <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Meet Whitney</h3>
+          <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">About</h2>
+          <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Write better code by reading code.</h3>
         </div>
         <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
           <div class="relative lg:row-start-1 lg:col-start-2">

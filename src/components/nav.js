@@ -3,9 +3,18 @@ import PropTypes from "prop-types"
 import { Transition } from "@headlessui/react"
 import LogoImg from "../images/logo.svg"
 import SmallLogoImg from "../images/small-logo.svg"
+import { Link } from "gatsby"
 
 const Nav = ({siteTitle}) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isActive = ({ isCurrent }) => {
+    return isCurrent ? { className: "border-indigo-500 text-gray-900 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" } : { className: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" }
+  }
+
+  const isActiveMobile = ({ isCurrent }) => {
+    return isCurrent ? { className: "bg-indigo-50 border-indigo-500 text-indigo-700 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" } : { className:  "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" }
+  }
 
   return (
     <>
@@ -14,26 +23,23 @@ const Nav = ({siteTitle}) => {
           <div className="flex justify-between h-16">
             <div className="flex px-2 lg:px-0">
               <div className="flex-shrink-0 flex items-center">
-                <img className="block lg:hidden h-8 w-auto" src={SmallLogoImg} alt="Workflow" />
-                <img className="hidden lg:block h-8 w-auto" src={LogoImg} alt="Workflow" />
+                <Link to="/"><img className="block lg:hidden h-8 w-auto" src={SmallLogoImg} alt="Code Reading Blog" /></Link>
+                <Link to="/"><img className="hidden lg:block h-8 w-auto" src={LogoImg} alt="Code Reading Blog" /></Link>
               </div>
               <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
                 {/* <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" --> */}
-                <a href="#" className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <Link to="/about" getProps={isActive}>
                   About
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                </Link>
+                <Link to="/languages" getProps={isActive}>
                   Languages
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Beginner Guides
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                </Link>
+                <Link to="/guides" getProps={isActive}>
+                  Guides
+                </Link>
+                <Link to="/blog" getProps={isActive}>
                   Blog
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Contact
-                </a>
+                </Link>
               </div>
             </div>
             <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
@@ -76,41 +82,6 @@ const Nav = ({siteTitle}) => {
                 </svg>
               </button>
             </div>
-            <div show={isOpen} className="hidden lg:ml-4 lg:flex lg:items-center">
-              <button className="flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <span className="sr-only">View notifications</span>
-                {/* <!-- Heroicon name: outline/bell --> */}
-                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </button>
-
-              {/* <!-- Profile dropdown --> */}
-              <div className="ml-4 relative flex-shrink-0">
-                <div>
-                  <button type="button" className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu" aria-expanded="false" aria-haspopup="true" onClick={() => setIsOpen(!isOpen)}>
-                    <span className="sr-only">Open user menu</span>
-                    <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=l9ZKEo16zp&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                  </button>
-                </div>
-
-                {/* <!--
-                  Dropdown menu, show/hide based on menu state.
-
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                --> */}
-                <Transition show={isOpen} leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95" enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale=100" className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
-                </Transition>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -118,34 +89,10 @@ const Nav = ({siteTitle}) => {
         <Transition show={isOpen}  className="lg:hidden" id="mobile-menu">
           <div className="pt-2 pb-3 space-y-1">
             {/* <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" --> */}
-            <a href="#" className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
-            <a href="#" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Languages</a>
-            <a href="#" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Beginner Guides</a>
-            <a href="#" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Blog</a>
-            <a href="#" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
-          </div>
-          <div className="pt-4 pb-3 border-t border-gray-200">
-            <div className="flex items-center px-4">
-              <div className="flex-shrink-0">
-                <img className="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=l9ZKEo16zp&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-              </div>
-              <div className="ml-3">
-                <div className="text-base font-medium text-gray-800">Tom Cook</div>
-                <div className="text-sm font-medium text-gray-500">tom@example.com</div>
-              </div>
-              <button className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <span className="sr-only">View notifications</span>
-                {/* <!-- Heroicon name: outline/bell --> */}
-                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </button>
-            </div>
-            <div className="mt-3 space-y-1">
-              <a href="#" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Your Profile</a>
-              <a href="#" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Settings</a>
-              <a href="#" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
-            </div>
+            <Link to="/about" getProps={isActiveMobile}>About</Link>
+            <Link to="#" getProps={isActiveMobile}>Languages</Link>
+            <Link to="#" getProps={isActiveMobile}>Guides</Link>
+            <Link to="#" getProps={isActiveMobile}>Blog</Link>
           </div>
         </Transition>
       </nav>
