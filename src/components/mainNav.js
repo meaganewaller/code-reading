@@ -37,9 +37,9 @@ const MainNav = ({siteTitle}) => {
               </div>
               <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
                 <Link to="/about" className="font-medium text-gray-500 hover:text-gray-900">About</Link>
-                <Link to="#" className="font-medium text-gray-500 hover:text-gray-900">Guides</Link>
-                <Link to="#" className="font-medium text-gray-500 hover:text-gray-900">Languages</Link>
-                <Link to="#" className="font-medium text-gray-500 hover:text-gray-900">Blog</Link>
+                <Link to="/guides" className="font-medium text-gray-500 hover:text-gray-900">Guides</Link>
+                <Link to="/languages" className="font-medium text-gray-500 hover:text-gray-900">Languages</Link>
+                <Link to="/blog" className="font-medium text-gray-500 hover:text-gray-900">Blog</Link>
               </div>
             </nav>
           </div>
@@ -72,9 +72,9 @@ const MainNav = ({siteTitle}) => {
               </div>
               <div class="px-2 pt-2 pb-3 space-y-1">
                 <Link to="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">About</Link>
-                <Link to="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Guides</Link>
-                <Link to="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Languages</Link>
-                <Link to="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Blog</Link>
+                <Link to="/guides" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Guides</Link>
+                <Link to="/languages" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Languages</Link>
+                <Link to="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Blog</Link>
               </div>
               <a href="#" class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
                 Log in
